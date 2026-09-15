@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+
+    <title>{% block title %}Document{% endblock %}</title>
+</head>
+<body>
+<header class="header">
+    <div class="container header__container">
+        <img  class="header__logo" src="{% static 'images/svg/logo.svg' %}" alt="WB">
+        
+        <nav class="header__nav">
+            <a href="#" class="header_link">TRADE IN</a>
+            <a href="#" class="header_link">ВЕЛОСИПЕДЫ</a>
+            <a href="#" class="header_link">ЗАПЧАСТИ</a>
+            <a href="#" class="header_link">ЭКИПИРОВКА</a>
+            <a href="#" class="header_link">АКСЕССУАРЫ</a>
+            <a href="#" class="header_link">ВЕЛОСТАНКИ</a>
+        </nav>
+
+        <div class="header_actions">
+            <a href="#"><img src="{% static 'images/svg/search.svg' %}" alt="Поиск"></a>
+            <a href="#"><img src="{% static 'images/svg/user.svg' %}" alt="Профиль"></a>
+            <a href="#"><img src="{% static 'images/svg/heart2.svg' %}" alt="Избранное"></a>
+            <a href="#"><img src="{% static 'images/svg/cart.svg' %}" alt="Корзина"></a>
+
+            <button>
+                <img src="{% static 'images/svg/menu.svg' %}" alt="Меню">
+            </button>
+        </div>
+
+    </div>
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+<footer class="footer">
+
+    <div class="footer_subscribe">
+        <div class="container footer_subscribe_container">
+            <div class="footer_subscribe_content">
+                <h2>ПОДПИШИТЕСЬ НА НАШИ НОВОСТИ</h2>
+
+                <form class="footer_form">
+                    <input type="email" placeholder="E-mail">
+                    <button type="submit">Подписаться</button>
+                </form>
+
+                <label class="footer_agreement">
+                    <input type="checkbox">
+                    <span>Согласен(ы) на обработку персональных данных</span>
+                </label>
+            </div>
+            
+            <div class="img_pic">
+                <img src="{% static 'images/img/pic.png'%}" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer_main">
+        <div class="container footer_container">
+
+            <div class="footer_brand">
+                <img src="{% static 'images/svg/logo.svg' %}" alt="WB">
+
+                <p>
+                    Компания World-bikes<br>
+                    специализируется на продаже<br>
+                    товаров для велосипедного спорта.
+                </p>
+            </div>
+
+            <div class="footer_column">
+                <h3>Каталог</h3>
+                <a href="#">Trade-in</a>
+                <a href="#" class="active">Велосипеды</a>
+                <a href="#">Экипировка</a>
+                <a href="#">Запчасти</a>
+                <a href="#">Велостанки</a>
+                <a href="#">Аксессуары</a>
+            </div>
+
+            <div class="footer_column">
+                <h3>Для клиента</h3>
+                <a href="#">О нас</a>
+                <a href="#">Доставка и оплата</a>
+                <a href="#">Блог</a>
+                <a href="#">Контакты</a>
+                <a href="#">Веломастерская</a>
+                <a href="#">Хранение</a>
+                <a href="#">Гарантии</a>
+            </div>
+
+            <div class="footer_column footer_contacts">
+                <h3>Контакты</h3>
+
+                <div class="footer_contact">
+                    <img src="{% static 'images/svg/smartphone.svg' %}" alt="">
+                    <div>
+                        <a href="#">+7(495)055-75-86 <br></a> 
+                        <a href="#">+7(965)142-22-99</a>
+                    </div>
+                </div>
+
+                <div class="footer_contact">
+                    <img src="{% static 'images/svg/navigation.svg' %}" alt="">
+                    <p>
+                        г. Москва, ул.<br>
+                        Доватора, 77с1
+                    </p>
+                </div>
+
+                <div class="footer_contact">
+                    <img src="{% static 'images/svg/mail.svg' %}" alt="">
+                    <a href="mailto:order@world-bike.ru">
+                        order@world-bike.ru
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer_bottom">
+        <div class="container footer_bottom_container">
+            <span>© 2023 WORLD BIKE</span>
+            <a href="#">Пользовательское соглашение</a>
+        </div>
+    </div>
+
+</footer>
+</body>
+</html>

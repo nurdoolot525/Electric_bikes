@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+
+<section class="detail_banner">
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">Главная</a> /
+            <a href="{% url 'catalog' %}">Велосипеды</a> /
+            <span class="breadcrumbs_current">{{ product.title }}</span>
+        </nav>
+    </div>
+</section>
+
+<section class="container detail_main">
+    <div class="detail_image">
+        <img src="{{ product.image.url }}" alt="{{ product.title }}">
+    </div>
+
+    <div class="detail_info">
+        <h1 class="detail_title">{{ product.title }}</h1>
+
+        <div class="detail_article">Артикул: {{ product.article }}</div>
+
+        {% if product.is_available %}
+        <span class="detail_status">В наличии</span>
+        {% else %}
+        <span class="detail_status detail_status_sold">Распродано</span>
+        {% endif %}
+
+        <div class="detail_prices">
+            <span class="detail_price">{{ product.price }} ₽</span>
+            {% if product.old_price %}
+            <span class="detail_old_price">{{ product.old_price }} ₽</span>
+            {% endif %}
+        </div>
+
+        {% if product.description %}
+        <p class="detail_short_desc">{{ product.description }}</p>
+        {% endif %}
+
+        {% if sizes %}
+        <div class="detail_row">
+            <span class="detail_row_label">Размеры:</span>
+            <div class="detail_badges">
+                {% for size in sizes %}
+                <span class="detail_badge">{{ size }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if colors %}
+        <div class="detail_row">
+            <span class="detail_row_label">Цвета:</span>
+            <div class="detail_badges">
+                {% for color in colors %}
+                <span class="detail_badge">{{ color }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="detail_row">
+            <span class="detail_row_label">Количество:</span>
+            <input class="detail_quantity" type="number" value="{{ product.quantity }}" min="1" max="{{ product.quantity }}">
+        </div>
+
+        <div class="detail_buttons">
+            <button class="detail_buy">В корзину</button>
+            <button class="detail_favorite" title="В избранное"> <img src="{% static 'images/svg/heart.svg' %}" alt="В избранное"></button>
+        </div>
+    </div>
+</section>
+
+<section class="container detail_sections">
+    <h2 class="detail_section_title">Описание</h2>
+    <p class="detail_text">{{ product.description }}</p>
+
+    <h2 class="detail_section_title">Характеристика</h2>
+    <table class="detail_table">
+        {% for name, value in characteristics %}
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2 class="detail_section_title">ДОСТАВКА</h2>
+    <div class="delivery_block">
+        <img class="delivery_image" src="{% static 'images/img/Frame 421.png' %}" alt="Доставка">
+
+        <p class="delivery_intro">Для удобства покупателей действует несколько способов доставки товаров</p>
+
+        <ul class="delivery_list">
+            <li>Доставка по Москве, в пределах МКАД</li>
+            <li>Доставка по Московской области</li>
+            <li>Доставка в другие регионы России</li>
+        </ul>
+
+        <div class="delivery_badge">Любой из способов доступен при оформлении заказа через сайт или у операторов</div>
+
+        <p class="delivery_note">Велосипеды и вело-станки доставляются в собранном и настроенном виде.</p>
+        <p class="delivery_note">
+            На любые вопросы по правилам и стоимости доставки ответят оператор:
+            <a class="delivery_phone" href="#">+7 (495) 055-75-86</a>
+        </p>
+        <p class="delivery_note">Для любого заказа возможен самовывоз из магазина.</p>
+    </div>
+</section>
+
+<section class="container detail_similar">
+    <h2 class="detail_section_title">Похожие товары</h2>
+    <div class="products_grid">
+        {% for item in similar_products %}
+        <div class="product_card">
+            <a class="product_card_link" href="{% url 'product_detail' item.pk %}">
+                <div class="product_card_top">
+                    {% if item.is_available %}
+                    <span class="status_in_stock">В наличии</span>
+                    {% else %}
+                    <span class="status_sold">Распродано</span>
+                    {% endif %}
+                </div>
+
+                <div class="product_image">
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                </div>
+
+                <h3 class="product_title">{{ item.title }}</h3>
+
+                <div class="product_prices">
+                    <span class="product_price">{{ item.price }} ₽</span>
+                    {% if item.old_price %}
+                    <span class="product_old_price">{{ item.old_price }} ₽</span>
+                    {% endif %}
+                </div>
+            </a>
+
+            {% if item.is_available %}
+            <a class="product_buy" href="{% url 'product_detail' item.pk %}">В 1 клик</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

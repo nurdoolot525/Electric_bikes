@@ -1,0 +1,450 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <div class="hero_content">
+      <h1 class="hero_title">ЭЛЕКТРО<br />ВЕЛОСИПЕДЫ</h1>
+      <p class="hero_description">
+        Cento10 Hybrid — это гоночный велосипед с помогающим педалированию
+        электроприводом, который устанавливает новый, очень высокий стандарт для
+        данной категории
+      </p>
+      <a href="#" class="hero_btn">Подробнее</a>
+    </div>
+
+    <div class="hero_dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <div class="hero_cards">
+      <div class="hero_card">
+        <h3 class="hero_card_title">
+          Экстремальное вождение на горном велосипеде
+        </h3>
+        <a href="#" class="hero_card_link">Подробнее</a>
+      </div>
+      <div class="hero_card">
+        <h3 class="hero_card_title">Велосипеды для профессионалов</h3>
+        <a href="#" class="hero_card_link">Подробнее</a>
+      </div>
+      <div class="hero_card">
+        <h3 class="hero_card_title">Долгая поездка на шоссейном велосипеде</h3>
+        <a href="#" class="hero_card_link">Подробнее</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="new_bike">
+  <div class="brands">
+    <img src="{% static 'images/svg/1 (1).svg' %}" alt="brand 1">
+    <img src="{% static 'images/svg/2.svg' %}" alt="brand 2">
+    <img src="{% static 'images/svg/3.svg' %}" alt="brand 3">
+    <img src="{% static 'images/svg/4.svg' %}" alt="brand 4">
+    <img src="{% static 'images/svg/5.svg' %}" alt="brand 5">
+    <img src="{% static 'images/svg/6.svg' %}" alt="brand 6">
+    <img src="{% static 'images/svg/7 1.svg' %}" alt="brand 7">
+  </div>
+
+  <div class="container news_bike">
+    <h2 class="novelties_title">НОВИНКИ</h2>
+    
+      <div class="novelties_grid">
+      {% for product in products|slice:":3" %}
+      <a class="bike_card" href="{% url 'product_detail' product.pk %}">
+        <div class="bike_card_header">
+          {% if product.flag %}
+          <img src="{{ product.flag.url }}" class="product_flag" alt="флаг">
+          {% endif %}
+
+          {% if product.is_available %}
+          <span class="status status_in_stock_bike">В наличии</span>
+          {% else %}
+          <span class="status status_sold_bike">Распродано</span>
+          {% endif %}
+        </div>
+
+        <div class="bike_image">
+          <img src="{{ product.image.url }}" alt="{{ product.title }}">
+        </div>
+
+        <div class="bike_info">
+          <h3 class="bike_name">{{ product.title }}</h3>
+          <div class="bike_price">{{ product.price }} ₽</div>
+        </div>
+
+        {% if product.is_available %}
+        <span class="btn_buy_bike">В 1 клик</span>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="novelties_more">
+      <a href="#" class="btn_show_all">ПОКАЗАТЬ ВСЕ</a>
+    </div>
+  </div>
+</section>
+<section class="catalog">
+  <div class="container">
+    <h2 class="catalog_title">КАТАЛОГ</h2>
+
+    <div class="catalog_grid">
+      <a href="#" class="catalog_card card_bikes">
+        <span class="card_text">ВЕЛОСИПЕДЫ</span>
+        <img src="{% static 'images/img/pngwing.png' %}" alt="Велосипеды">
+      </a>
+
+      <a href="#" class="catalog_card card_tradein">
+        <span class="card_text">TRADE-IN</span>
+        <img src="{% static 'images/img/pngwing 2.png' %}" alt="Trade-In">
+      </a>
+
+      <a href="#" class="catalog_card card_parts">
+        <span class="card_text">ЗАПЧАСТИ</span>
+        <img src="{% static 'images/img/pngwing (1).png' %}" alt="Запчасти">
+      </a>
+
+      <a href="#" class="catalog_card card_gear">
+        <span class="card_text">ЭКИПИРОВКА</span>
+        <img src="{% static 'images/img/pngwing (2).png' %}" alt="Экипировка">
+      </a>
+
+      <a href="#" class="catalog_card card_accessories">
+        <span class="card_text">АКСЕССУАРЫ</span>
+        <img src="{% static 'images/img/image 40.png' %}" alt="Аксессуары">
+      </a>
+
+      <a href="#" class="catalog_card card_trainers">
+        <span class="card_text">ВЕЛОСТАНКИ</span>
+        <img src="{% static 'images/img/image 39.png' %}" alt="Велостанки">
+      </a>
+    </div>
+    <div class="about_content">
+      <h2 class="about_title">НИЧЕГО НЕ СМОЖЕТ<br>ОСТАНОВИТЬ ВАС</h2>
+      <div class="about_info">
+        <p class="about_text">
+          Наша компания специализируется на продаже товаров для велосипедного
+          спорта — велосипедов, запасных частей, аксессуаров и различного
+          спортивного инвентаря для активного спорта и отдыха.
+        </p>
+        <a href="#" class="about_link">Подробнее</a>
+      </div>
+    </div>
+</section>
+<section class="video_features">
+    <div class="video_banner">
+      <img src="{% static 'images/img/Frame 76.png' %}" alt="Велосипедист"
+        class="video_bg">
+    </div>
+
+    <div class="features_bar">
+      <div class="container">
+        <div class="features_grid">
+          <div class="feature_item">
+            <div class="feature_icon">
+              <img src="{% static 'images/svg/diamond.svg' %}" alt="Бренды">
+            </div>
+            <div class="feature_content">
+              <h3 class="feature_title">Европейские бренды</h3>
+              <p class="feature_text">Представляем десятки европейских
+                брендов</p>
+            </div>
+          </div>
+
+          <div class="feature_item">
+            <div class="feature_icon">
+              <img src="{% static 'images/svg/badge.svg' %}" alt="Гарантия">
+            </div>
+            <div class="feature_content">
+              <h3 class="feature_title">Вечная гарантия</h3>
+              <p class="feature_text">На некоторые бренды предоставляем
+                пожизненную гарантию</p>
+            </div>
+          </div>
+
+          <div class="feature_item">
+            <div class="feature_icon">
+              <img src="{% static 'images/svg/gear.svg' %}" alt="Настройка">
+            </div>
+            <div class="feature_content">
+              <h3 class="feature_title">Предпродажная настройка</h3>
+              <p class="feature_text">Специалисты настроят ваш велосипед
+                наилучшим образом</p>
+            </div>
+          </div>
+
+          <div class="feature_item">
+            <div class="feature_icon">
+              <img src="{% static 'images/svg/clock.svg' %}" alt="Доставка">
+            </div>
+            <div class="feature_content">
+              <h3 class="feature_title">Доставка за 24 часа</h3>
+              <p class="feature_text">Доставляем товар всеми популярными
+                транспортными компаниями</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<section class="winter_section">
+    <div class="container winter_container">
+      <h2 class="winter_title">ЛУЧШИЕ МОДЕЛИ<br>ДЛЯ ЗИМНЕЙ<br>ЕЗДЫ</h2>
+
+      <div class="winter_grid">
+        {% for product in winter_bikes %}
+        <a class="bike_card" href="{% url 'catalog' %}">
+          <div class="bike_card_header">
+            {% if product.flag %}
+            <img src="{{ product.flag.url }}" class="product_flag" alt="флаг">
+            {% endif %}
+
+            {% if product.is_available %}
+            <span class="status status_in_stock_bike">В наличии</span>
+            {% else %}
+            <span class="status status_sold_bike">Распродано</span>
+            {% endif %}
+          </div>
+
+          <div class="bike_image">
+            <img src="{{ product.image.url }}" alt="{{ product.title }}">
+          </div>
+
+          <div class="bike_info">
+            <h3 class="bike_name">{{ product.title }}</h3>
+            <div class="bike_price">{{ product.price }} ₽</div>
+          </div>
+
+          {% if product.is_available %}
+          <span class="btn_buy_bike">В 1 клик</span>
+          {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+
+      <div class="novelties_more">
+        <a href="#" class="btn_show_all">ПОКАЗАТЬ ВСЕ</a>
+      </div>
+    </div>
+</section>
+<section class="mountain_bikes">
+    <div class="container mountain_container">
+      <div class="mountain_left">
+        <h2 class="mountain_title">ГОРНЫЕ<br>ВЕЛОСИПЕДЫ</h2>
+
+        <div class="features_grid">
+          <div class="feature_card">
+            <div class="feature_header">
+              <h3>Рама</h3>
+              <img src="{% static 'images/svg/free-icon-bike-2069905 1.svg' %}"
+                alt="Рама" class="feature_icon">
+            </div>
+            <p>It is a long established fact that a reader will be distracted by
+              the readable content of</p>
+          </div>
+
+          <div class="feature_card">
+            <div class="feature_header">
+              <h3>Бортовой<br>компьютер</h3>
+              <img src="{% static 'images/svg/Group (3).svg' %}"
+                alt="Бортовой компьютер" class="feature_icon">
+            </div>
+            <p>The point of using lorem ipsum is that it has a more-or-less
+              normal distribution of letters</p>
+          </div>
+
+          <div class="feature_card">
+            <div class="feature_header">
+              <h3>Трансмиссия</h3>
+              <img src="{% static 'images/svg/Group (4).svg' %}"
+                alt="Трансмиссия" class="feature_icon">
+            </div>
+            <p>Many desktop publishing packages and web page editors now use
+              lorem ipsum as</p>
+          </div>
+
+          <div class="feature_card">
+            <div class="feature_header">
+              <h3>Оборудование</h3>
+              <img src="{% static 'images/svg/Group (5).svg' %}"
+                alt="Оборудование" class="feature_icon">
+            </div>
+            <p>Contrary to popular belief, lorem ipsum is not simply random
+              text. It has roots in</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mountain_right">
+        <div class="mountain_image">
+          <img src="{% static 'images/img/pic (1).png' %}"
+            alt="Горный велосипед">
+        </div>
+        <p class="mountain_desc">
+          Горный велосипед несмотря на свое название часто и активно
+          используется в условиях города, так как обладает рядом характеристик,
+          позволяющих сделать велопрогулку максимально приятной и комфортной
+        </p>
+        <a href="{% url 'catalog' %}" class="btn_catalog">Каталог</a>
+      </div>
+    </div>
+</section>
+<section class="advantages">
+    <div class="advantages_container">
+      <h2 class="advantages_title">ПРЕИМУЩЕСТВА</h2>
+      <div class="advantages_wrapper">
+        <div class="advantages_image">
+          <img src="{% static 'images/img/Rectangle 148.png' %}"
+            alt="Преимущества">
+        </div>
+        <div class="advantages_grid">
+          <div class="advantage_card">
+            <h3>БЕСПЛАТНАЯ ДОСТАВКА</h3>
+            <p>Мы пользуемся всеми популярными видами доставки</p>
+            <a href="#">Подробнее</a>
+          </div>
+          <div class="advantage_card">
+            <h3>ОБМЕН И ВОЗВРАТ</h3>
+            <p>Все товары обеспечены фирменной гарантией фирм-производителей</p>
+            <a href="#">Подробнее</a>
+          </div>
+          <div class="advantage_card">
+            <h3>ДОП. ОБСЛУЖИВАНИЕ</h3>
+            <p>Мы выполняем ремонт велосипеда любой сложности</p>
+            <a href="#">Подробнее</a>
+          </div>
+          <div class="advantage_card">
+            <h3>ОНЛАЙН ОПЛАТА</h3>
+            <p>Для удобства вы можете оплатить товар банковской картой через
+              сайт</p>
+            <a href="#">Подробнее</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<section class="equipment_section">
+    <div class="equipment_container">
+      <h2 class="equipment_title">ЭКИПИРОВКА</h2>
+
+      <div class="equipment_wrapper">
+        <button class="slider_btn prev_btn">&#10094;</button>
+
+        <div class="equipment_grid">
+          {% for item in equipment %}
+          <div class="product_card">
+            {% if item.is_sold %}
+            <div class="product_header">
+              <span class="status status_sold">Распродано</span>
+            </div>
+            {% endif %}
+
+            <div class="product_image">
+              <img src="{{ item.image.url }}" alt="{{ item.title }}">
+            </div>
+
+            <div class="product_info">
+              <h3 class="product_name">{{ item.title }}</h3>
+              <div class="price_block">
+                <span class="product_price">{{ item.price }} ₽</span>
+                {% if item.old_price %}
+                <span class="old_price">{{ item.old_price }} ₽</span>
+                {% endif %}
+              </div>
+            </div>
+
+            <button class="btn_buy">В 1 клик</button>
+          </div>
+          {% endfor %}
+        </div>
+
+        <button class="slider_btn next_btn">&#10095;</button>
+      </div>
+
+      <div class="equipment_more">
+        <a href="#" class="btn_show_all">ПОКАЗАТЬ ВСЕ</a>
+      </div>
+    </div>
+</section>
+<section class="reviews_section">
+    <div class="reviews_container">
+      <h2 class="reviews_title">ПОСЛЕДНИЕ ОБЗОРЫ</h2>
+
+      <div class="reviews_grid">
+        {% for item in reviews %}
+        <div class="review_card">
+          <div class="review_image">
+            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+          </div>
+          <div class="review_content">
+            <span class="review_date">{{ item.date|date:"d.m.Y" }}</span>
+            <span class="review_tag">{{ item.tag }}</span>
+            <h3 class="review_card_title">{{ item.title }}</h3>
+            <a href="{{ item.link }}" class="btn_more">Подробнее</a>
+          </div>
+        </div>
+        {% empty %}
+        <p>Обзоров пока нет</p>
+        {% endfor %}
+      </div>
+
+      <div class="reviews_more">
+        <a href="#" class="btn_show_all">ПОКАЗАТЬ ВСЕ</a>
+      </div>
+    </div>
+</section>
+<section class="contacts_section">
+    <div class="contacts_container">
+      <h2 class="contacts_title">КОНТАКТЫ</h2>
+    </div>
+
+    <div class="map_fullwidth">
+      <img src="{% static 'images/img/map.png' %}" alt="Карта"
+        class="map_image">
+    </div>
+
+    <div class="contacts_container">
+      <div class="contacts_info">
+        <div class="contact_item">
+          <div class="contact_icon">
+            <img src="{% static 'images/svg/smartphone.svg' %}" alt="Телефон">
+          </div>
+          <div class="contact_text">
+            <p>+7 (495) 055-75-86</p>
+            <p>+7 (965) 142-22-99</p>
+          </div>
+        </div>
+        <div class="contact_item">
+          <div class="contact_icon">
+            <img src="/static/images/svg/navigation.svg" alt="Адрес">
+          </div>
+          <div class="contact_text">
+            <p>г. Москва, ул. Доватора, 7/8 с1</p>
+          </div>
+        </div>
+        <div class="contact_item">
+          <div class="contact_icon">
+            <img src="/static/images/svg/mail.svg" alt="Почта">
+          </div>
+          <div class="contact_text">
+            <p>order@world-bike.ru</p>
+          </div>
+        </div>
+        <div class="contact_item">
+          <div class="contact_icon">
+            <img src="/static/images/svg/calendar.svg" alt="График">
+          </div>
+          <div class="contact_text">
+            <p>Без выходных</p>
+            <p>10:00-20:00</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</section>
+{% endblock %}

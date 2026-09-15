@@ -1,0 +1,276 @@
+.detail_banner {
+    background: url("../images/img/Rectangle 166.png");
+    color: #ffffff;
+    padding: 30px 0;
+}
+
+.detail_main {
+    display: flex;
+    gap: 40px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    align-items: flex-start;
+}
+
+.detail_image {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail_image img {
+    width: 623px;
+    height: 560px;
+    object-fit: contain;
+}
+
+.detail_info {
+    width: 50%;
+}
+
+.detail_title {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.detail_article {
+    font-size: 13px;
+    color: #888888;
+    margin-bottom: 12px;
+}
+
+.detail_status {
+    display: inline-block;
+    color: green;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 5px 12px;
+    margin-bottom: 15px;
+}
+
+.detail_status_sold {
+    color: red;
+}
+
+.detail_prices {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.detail_price {
+    font-size: 28px;
+    font-weight: 800;
+   
+}
+
+.detail_old_price {
+    font-size: 18px;
+    color: #a0a0a0;
+    text-decoration: line-through;
+}
+
+.detail_short_desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555555;
+    margin-bottom: 20px;
+}
+
+.detail_row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.detail_row_label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    min-width: 100px;
+}
+
+.detail_badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.detail_badge {
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: #333333;
+    background: #fafafa;
+}
+
+.detail_quantity {
+    width: 70px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.detail_buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.detail_buy {
+    background: #f26522;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.detail_favorite {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #ffffff;
+}
+
+.detail_favorite img {
+    width: 22px;
+    height: 22px;
+}
+
+.detail_sections {
+    padding-bottom: 30px;
+}
+
+.detail_section_title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding-top: 30px;
+}
+
+.detail_text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555555;
+    margin-bottom: 20px;
+}
+
+.detail_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.detail_table td {
+    border: 1px solid #e5e5e5;
+    padding: 12px 15px;
+    font-size: 14px;
+}
+
+.detail_table td:first-child {
+    width: 40%;
+    background: #fafafa;
+    font-weight: 600;
+    color: #333333;
+}
+
+.delivery_block {
+    padding: 0;
+}
+
+.delivery_image {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    max-height: 300px;
+    margin-bottom: 25px;
+}
+
+.delivery_intro {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444444;
+    margin-bottom: 15px;
+}
+
+.delivery_list {
+    color: #555555;
+    font-size: 14px;
+    line-height: 1.8;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.delivery_badge {
+    background: #ffffff;
+    color: #000000;
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.delivery_note {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #555555;
+    margin-bottom: 10px;
+}
+
+.delivery_phone {
+    color: #d97736;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.detail_similar {
+    padding-top: 10px;
+    padding-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+    .detail_main {
+        flex-direction: column;
+    }
+
+    .detail_image {
+        width: 100%;
+    }
+
+    .detail_info {
+        width: 100%;
+    }
+
+    .detail_title {
+        font-size: 22px;
+    }
+
+    .detail_buy {
+        width: 100%;
+    }
+
+    .delivery_intro {
+        font-size: 15px;
+    }
+}

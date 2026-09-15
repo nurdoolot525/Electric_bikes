@@ -1,0 +1,75 @@
+<form method="get" class="filters_form">
+
+    <label class="filter_in_stock">
+        <input type="checkbox" name="in_stock" value="1" {% if in_stock %}checked{% endif %}>
+        Только в наличии
+    </label>
+
+    <div class="filter_block">
+        <h3 class="filter_title">Категория товара</h3>
+        <label><input type="checkbox"> Велосипеды для триатлона</label>
+        <label><input type="checkbox" checked> Горные велосипеды</label>
+        <label><input type="checkbox"> Городские велосипеды</label>
+        <label><input type="checkbox"> Гравийные велосипеды</label>
+        <label><input type="checkbox"> Двухподвесные велосипеды</label>
+        <a href="#" class="filter_more">ПОКАЗАТЬ ЕЩЁ</a>
+    </div>
+
+    <div class="filter_block">
+        <h3 class="filter_title">Цена</h3>
+        <div class="price_inputs">
+            <input type="number" name="min_price" placeholder="От" value="{{ min_price }}">
+            <input type="number" name="max_price" placeholder="До" value="{{ max_price }}">
+        </div>
+    </div>
+
+    <div class="filter_block">
+        <h3 class="filter_title">Бренд</h3>
+        {% for name, count in brands %}
+        <label>
+            <input type="checkbox" name="brand" value="{{ name }}"
+                   {% if name == selected_brand %}checked{% endif %}>
+            {{ name }} ({{ count }})
+        </label>
+        {% endfor %}
+        <a href="#" class="filter_more">ПОКАЗАТЬ ЕЩЁ</a>
+    </div>
+
+    <div class="filter_block">
+        <h3 class="filter_title">Материал рамы</h3>
+        <label><input type="checkbox"> Алюминий</label>
+        <label><input type="checkbox"> Карбон</label>
+        <label><input type="checkbox"> Сталь</label>
+    </div>
+
+    <div class="filter_block">
+        <h3 class="filter_title">Цвет</h3>
+        <div class="color_buttons">
+            <button type="button" class="color_dot" style="background:#ffffff" title="Белый"></button>
+            <button type="button" class="color_dot" style="background:#d9d9d9" title="Серый"></button>
+            <button type="button" class="color_dot" style="background:#c0c0c0" title="Серебро"></button>
+            <button type="button" class="color_dot" style="background:#7ac143" title="Зелёный"></button>
+            <button type="button" class="color_dot" style="background:#00a651" title="Светло-зелёный"></button>
+            <button type="button" class="color_dot" style="background:#006837" title="Тёмно-зелёный"></button>
+            <button type="button" class="color_dot" style="background:#8a9a5b" title="Оливковый"></button>
+            <button type="button" class="color_dot" style="background:#f7b500" title="Жёлтый"></button>
+            <button type="button" class="color_dot" style="background:#f7941d" title="Оранжевый"></button>
+            <button type="button" class="color_dot" style="background:#ed1c24" title="Красный"></button>
+            <button type="button" class="color_dot" style="background:#aedff2" title="Светло-голубой"></button>
+            <button type="button" class="color_dot" style="background:#00b7ef" title="Голубой"></button>
+            <button type="button" class="color_dot" style="background:#009b8e" title="Бирюзовый"></button>
+            <button type="button" class="color_dot" style="background:#004a99" title="Тёмно-синий"></button>
+            <button type="button" class="color_dot" style="background:#92278f" title="Фиолетовый"></button>
+            <button type="button" class="color_dot" style="background:#e6338b" title="Малиновый"></button>
+            <button type="button" class="color_dot" style="background:#f8b0c0" title="Розовый"></button>
+            <button type="button" class="color_dot" style="background:#9a9a9a" title="Тёмно-серый"></button>
+            <button type="button" class="color_dot" style="background:#5d4e37" title="Коричневый"></button>
+            <button type="button" class="color_dot" style="background:#111111" title="Чёрный"></button>
+        </div>
+    </div>
+
+    {% if sort != "new" %}<input type="hidden" name="sort" value="{{ sort }}">{% endif %}
+
+    <button type="submit" class="filter_apply">Применить</button>
+    <a href="{% url 'catalog' %}" class="filter_reset">Сбросить фильтры</a>
+</form>
