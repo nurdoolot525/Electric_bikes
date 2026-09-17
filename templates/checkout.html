@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+
+<div class="checkout_page">
+    <div class="checkout_container">
+
+        <div class="checkout_breadcrumbs">
+            <a href="{% url 'home' %}">Главная</a> /
+            <span class="checkout_breadcrumbs_current">Оформление заказа</span>
+        </div>
+
+        <h1 class="checkout_title">ОФОРМЛЕНИЕ ЗАКАЗА</h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="checkout_top">
+
+                <div class="checkout_card checkout_form_card">
+                    <h2 class="checkout_card_title">1 ДЕТАЛИ ПЛАТЫ</h2>
+
+                    <div class="checkout_row">
+                        <input class="checkout_input" type="text" name="name" placeholder="Имя*" value="{{ data.name }}">
+                        <input class="checkout_input" type="text" name="surname" placeholder="Фамилия*" value="{{ data.surname }}">
+                    </div>
+
+                    <div class="checkout_row">
+                        <input class="checkout_input checkout_city" type="text" name="city" placeholder="Город*" value="{{ data.city }}">
+                        <input class="checkout_input" type="text" name="street" placeholder="Улица*" value="{{ data.street }}">
+                        <input class="checkout_input checkout_small" type="text" name="house" placeholder="Дом*" value="{{ data.house }}">
+                        <input class="checkout_input checkout_small" type="text" name="flat" placeholder="Кв*" value="{{ data.flat }}">
+                    </div>
+
+                    <div class="checkout_row">
+                        <input class="checkout_input" type="text" name="phone" placeholder="Телефон*" value="{{ data.phone }}">
+                        <input class="checkout_input" type="text" name="email" placeholder="E-mail*" value="{{ data.email }}">
+                    </div>
+
+                    <textarea class="checkout_textarea" name="comment" placeholder="Комментарий к заказу">{{ data.comment }}</textarea>
+                </div>
+
+                <div class="checkout_card checkout_delivery_card">
+                    <h2 class="checkout_card_title">2 ДЕТАЛИ ДОСТАВКИ</h2>
+
+                    <div class="checkout_group">
+                        <div class="checkout_group_title">Способ доставки</div>
+
+                        <label class="checkout_radio">
+                            <input type="radio" name="delivery" value="courier" {% if data.delivery == "courier" %}checked{% endif %}>
+                            <span>Курьерская доставка</span>
+                        </label>
+
+                        <label class="checkout_radio">
+                            <input type="radio" name="delivery" value="pickup" {% if data.delivery == "pickup" %}checked{% endif %}>
+                            <span>Самовывоз</span>
+                        </label>
+                    </div>
+
+                    <div class="checkout_group">
+                        <div class="checkout_group_title">Способ оплаты</div>
+
+                        <label class="checkout_radio">
+                            <input type="radio" name="payment" value="online" {% if data.payment == "online" %}checked{% endif %}>
+                            <span>Оплата онлайн, на сайте</span>
+                        </label>
+
+                        <label class="checkout_radio">
+                            <input type="radio" name="payment" value="card" {% if data.payment == "card" %}checked{% endif %}>
+                            <span>Оплата курьеру картой</span>
+                        </label>
+
+                        <label class="checkout_radio">
+                            <input type="radio" name="payment" value="cash" {% if data.payment == "cash" %}checked{% endif %}>
+                            <span>Оплата курьеру наличными</span>
+                        </label>
+
+                        <label class="checkout_radio">
+                            <input type="radio" name="payment" value="shop" {% if data.payment == "shop" %}checked{% endif %}>
+                            <span>Оплата в магазине</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="checkout_order">
+
+                <div class="checkout_order_left">
+                    <h2 class="checkout_card_title">3 ВАШ ЗАКАЗ</h2>
+                </div>
+
+                <div class="checkout_order_middle">
+                    <div class="checkout_delivery_name">
+                        {% if data.delivery == "pickup" %}Самовывоз{% else %}Курьерская доставка{% endif %}
+                    </div>
+
+                    <div class="checkout_info_row">
+                        <span>Адрес:</span>
+                        <span>{{ data.address|default:"—" }}</span>
+                    </div>
+
+                    <div class="checkout_info_row">
+                        <span>Кому:</span>
+                        <span>{{ data.name }} {{ data.surname }}</span>
+                    </div>
+
+                    <div class="checkout_info_row">
+                        <span>Телефон:</span>
+                        <span>{{ data.phone|default:"—" }}</span>
+                    </div>
+
+                    <div class="checkout_info_row">
+                        <span>E-mail:</span>
+                        <span>{{ data.email|default:"—" }}</span>
+                    </div>
+                </div>
+
+                <div class="checkout_order_right">
+                    <span class="checkout_total_label">Итого {{ order_count }} товара</span>
+                    <span class="checkout_total_sum">{{ order_sum }}</span>
+
+                    <button class="checkout_confirm" type="submit">Подтвердить заказ</button>
+
+                    <p class="checkout_privacy">
+                        Ваши личные данные будут использоваться для обработки ваших заказов,
+                        упрощения вашей работы с сайтом и для других целей, описанных в нашей
+                        <a href="#">политике конфиденциальности</a>
+                    </p>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+    <a href="#" class="to_top" title="Наверх">↑</a>
+</div>
+
+{% endblock %}

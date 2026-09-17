@@ -1,7 +1,11 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, WinterBike, Equipment, Review
 import random
+
+
+def price_text(number):
+    return f'{number:,}'.replace(',', ' ') + ' ₽'
 
 CHAR_FIELDS = [
     ('Цвет', 'color'),
@@ -99,6 +103,118 @@ def catalog(request):
         'in_stock': bool(request.GET.get('in_stock')),
         'sort': sort,
         'query_params': query_params,
+    })
+
+
+def cart(request):
+    cart_ids = request.session.get('cart', [])
+
+    cart_items = []
+    total = 0
+    for product in Product.objects.filter(id__in=cart_ids):
+        quantity = cart_ids.count(product.id)
+        total = total + product.price * quantity
+
+        cart_items.append({
+            'product': product,
+            'quantity': quantity,
+            'price': price_text(product.price),
+            'old_price': price_text(product.old_price) if product.old_price else '',
+        })
+
+    order = {
+        'number': '789563678',
+        'sum': price_text(total),
+        'discount': price_text(0),
+        'total': price_text(total),
+    }
+
+    similar_products = list(Product.objects.all()[:3])
+
+    for product in similar_products:
+        product.price_text = price_text(product.price)
+        product.old_price_text = price_text(product.old_price) if product.old_price else ''
+
+    return render(request, 'cart.html', {
+        'cart_items': cart_items,
+        'order': order,
+        'similar_products': similar_products,
+    })
+
+
+def add_to_cart(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+
+    if product.is_available:
+        cart_ids = request.session.get('cart', [])
+        cart_ids.append(product.id)
+        request.session['cart'] = cart_ids
+
+    next_page = request.GET.get('next', 'cart')
+    return redirect(next_page)
+
+
+def remove_from_cart(request, pk):
+    cart_ids = request.session.get('cart', [])
+    cart_ids = [item for item in cart_ids if item != pk]
+    request.session['cart'] = cart_ids
+
+    return redirect('cart')
+
+
+def increase_quantity(request, pk):
+    cart_ids = request.session.get('cart', [])
+    cart_ids.append(pk)
+    request.session['cart'] = cart_ids
+
+    return redirect('cart')
+
+
+def decrease_quantity(request, pk):
+    cart_ids = request.session.get('cart', [])
+    if pk in cart_ids:
+        cart_ids.remove(pk)
+    request.session['cart'] = cart_ids
+
+    return redirect('cart')
+
+
+def clear_cart(request):
+    request.session['cart'] = []
+
+    return redirect('cart')
+
+
+def checkout(request):
+    cart_ids = request.session.get('cart', [])
+
+    total = 0
+    for product in Product.objects.filter(id__in=cart_ids):
+        total = total + product.price * cart_ids.count(product.id)
+
+    data = {
+        'name': request.POST.get('name', ''),
+        'surname': request.POST.get('surname', ''),
+        'city': request.POST.get('city', ''),
+        'street': request.POST.get('street', ''),
+        'house': request.POST.get('house', ''),
+        'flat': request.POST.get('flat', ''),
+        'phone': request.POST.get('phone', ''),
+        'email': request.POST.get('email', ''),
+        'comment': request.POST.get('comment', ''),
+        'delivery': request.POST.get('delivery', 'courier'),
+        'payment': request.POST.get('payment', 'online'),
+    }
+
+    if data['city']:
+        data['address'] = data['city'] + ', ул. ' + data['street'] + ', д. ' + data['house'] + ', кв. ' + data['flat']
+    else:
+        data['address'] = ''
+
+    return render(request, 'checkout.html', {
+        'data': data,
+        'order_count': len(cart_ids),
+        'order_sum': price_text(total),
     })
 
 

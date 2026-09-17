@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+
+<div class="cart_page">
+    <div class="cart_container">
+
+        <div class="cart_breadcrumbs">
+            <a href="{% url 'home' %}">Главная</a> /
+            <span class="cart_breadcrumbs_current">Корзина</span>
+        </div>
+
+        <h1 class="cart_title">КОРЗИНА</h1>
+
+        <div class="cart_top_links">
+            <a class="cart_back" href="{% url 'catalog' %}">Вернуться к покупкам</a>
+            <a class="cart_clear" href="{% url 'clear_cart' %}">Очистить корзину</a>
+        </div>
+
+        <div class="cart_layout">
+
+            <div class="cart_items">
+                {% for item in cart_items %}
+                <div class="cart_item">
+
+                    <img class="cart_item_image" src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+
+                    <div class="cart_item_info">
+                        <h3 class="cart_item_title">{{ item.product.title }}</h3>
+                    </div>
+
+                    <div class="cart_quantity">
+                        <a href="{% url 'decrease_quantity' item.product.pk %}">-</a>
+                        <span>{{ item.quantity }}</span>
+                        <a href="{% url 'increase_quantity' item.product.pk %}">+</a>
+                    </div>
+
+                    <div class="cart_item_prices">
+                        <span class="cart_item_price">{{ item.price }}</span>
+                        {% if item.old_price %}
+                        <span class="cart_item_old_price">{{ item.old_price }}</span>
+                        {% endif %}
+                    </div>
+
+                    <a class="cart_item_remove" href="{% url 'remove_from_cart' item.product.pk %}" title="Удалить товар">×</a>
+                </div>
+                {% empty %}
+                <p class="cart_empty">В корзине пока нет товаров.</p>
+                {% endfor %}
+            </div>
+
+            <aside class="cart_order">
+
+                <div class="cart_order_row">
+                    <span>Номер заказа</span>
+                    <span>{{ order.number }}</span>
+                </div>
+
+                <div class="cart_order_row">
+                    <span>Сумма заказа<br>(без скидки)</span>
+                    <span>{{ order.sum }}</span>
+                </div>
+
+                <div class="cart_order_row">
+                    <span>Скидка</span>
+                    <span>{{ order.discount }}</span>
+                </div>
+
+                <div class="cart_order_total">
+                    <span>Итого</span>
+                    <span>{{ order.total }}</span>
+                </div>
+
+                <a class="cart_order_button" href="{% url 'checkout' %}">Оформить заказ</a>
+            </aside>
+
+        </div>
+
+        <div class="cart_similar">
+            <h2 class="cart_similar_title">ПОХОЖИЕ ТОВАРЫ</h2>
+
+            <div class="cart_similar_grid">
+                {% for item in similar_products %}
+                <div class="cart_similar_card">
+
+                    <div class="cart_similar_top">
+                        {% if item.flag %}
+                        <img class="cart_flag" src="{{ item.flag.url }}" alt="Флаг страны">
+                        {% endif %}
+
+                        {% if item.is_available %}
+                        <span class="cart_status_ok">В наличии</span>
+                        {% else %}
+                        <span class="cart_status_sold">Распродано</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="cart_similar_image">
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                    </div>
+
+                    <h3 class="cart_similar_name">{{ item.title }}</h3>
+
+                    <div class="cart_similar_prices">
+                        <span class="cart_similar_price">{{ item.price_text }}</span>
+                        {% if item.old_price_text %}
+                        <span class="cart_similar_old">{{ item.old_price_text }}</span>
+                        {% endif %}
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="cart_similar_mobile">
+
+                <div class="cart_similar_top">
+                    {% if similar_products.0.flag %}
+                    <img class="cart_flag" src="{{ similar_products.0.flag.url }}" alt="Флаг страны">
+                    {% endif %}
+
+                    {% if similar_products.0.is_available %}
+                    <span class="cart_status_ok">В наличии</span>
+                    {% else %}
+                    <span class="cart_status_sold">Распродано</span>
+                    {% endif %}
+                </div>
+
+                <div class="cart_similar_mobile_image">
+                    <button class="cart_arrow" type="button">‹</button>
+                    <img src="{{ similar_products.0.image.url }}" alt="{{ similar_products.0.title }}">
+                    <button class="cart_arrow" type="button">›</button>
+                </div>
+
+                <h3 class="cart_similar_name">{{ similar_products.0.title }}</h3>
+
+                <div class="cart_similar_prices">
+                    <span class="cart_similar_price">{{ similar_products.0.price_text }}</span>
+                </div>
+
+                <a class="cart_buy_button" href="{% url 'add_to_cart' similar_products.0.pk %}?next={{ request.path }}"
+                   onclick="{% if similar_products.0.is_available %}alert('Товар добавлен в корзину');{% else %}alert('Этого товара нет в наличии');{% endif %}">В корзину</a>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="#" class="to_top" title="Наверх">↑</a>
+</div>
+
+{% endblock %}

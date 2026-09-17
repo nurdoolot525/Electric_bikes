@@ -70,7 +70,8 @@
         </div>
 
         <div class="detail_buttons">
-            <button class="detail_buy">В корзину</button>
+            <a class="detail_buy" href="{% url 'add_to_cart' product.pk %}?next={{ request.path }}"
+               onclick="{% if product.is_available %}alert('Товар добавлен в корзину');{% else %}alert('Этого товара нет в наличии');{% endif %}">В корзину</a>
             <button class="detail_favorite" title="В избранное"> <img src="{% static 'images/svg/heart.svg' %}" alt="В избранное"></button>
         </div>
     </div>
