@@ -31,7 +31,7 @@
             <a href="#"><img src="{% static 'images/svg/search.svg' %}" alt="Поиск"></a>
             <a href="#"><img src="{% static 'images/svg/user.svg' %}" alt="Профиль"></a>
             <a href="#"><img src="{% static 'images/svg/heart2.svg' %}" alt="Избранное"></a>
-            <a href="#"><img src="{% static 'images/svg/cart.svg' %}" alt="Корзина"></a>
+            <a href="{% url 'cart' %}"><img src="{% static 'images/svg/cart.svg' %}" alt="Корзина"></a>
 
             <button>
                 <img src="{% static 'images/svg/menu.svg' %}" alt="Меню">
