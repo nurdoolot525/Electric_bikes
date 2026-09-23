@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+
+<section class="contacts_hero">
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="{% url 'home' %}">Главная</a> /
+            <span class="breadcrumbs_current">Контакты</span>
+        </div>
+        <h1 class="contacts_hero_title">КОНТАКТЫ</h1>
+    </div>
+</section>
+
+<section class="map_section">
+    <img class="map_img" src="{% static 'images/img/map.png' %}" alt="Карта проезда">
+</section>
+
+<section class="shop_info">
+    <div class="container info_columns">
+
+        <div class="info_left">
+            <h3>Адрес магазина:</h3>
+            <p>Россия, Москва, ул. Доватора, дом 7/8 с1</p>
+
+            <h3>График работы:</h3>
+            <p>Понедельник — Воскресенье с 10:00 до 20:00 часов</p>
+            <p>БЕЗ ВЫХОДНЫХ</p>
+
+            <h3>Телефоны:</h3>
+            <p><a href="tel:+74950557586">+7 (495) 055-75-86</a></p>
+            <p><a href="tel:+79651422299">+7 (965) 142-22-99</a></p>
+
+            <h3>E-mail:</h3>
+            <p>order@world-bike.ru — заказы</p>
+            <p>info@world-bike.ru — информация</p>
+            <p>opt@world-bike.ru — опт</p>
+        </div>
+
+        <div class="info_right">
+            <h3>Юридическая информация:</h3>
+
+            <div class="legal_row">
+                <span>Наименование:</span>
+                <span>ИП НЕТРЕБИН ВЛАДИСЛАВ ВЯЧЕСЛАВОВИЧ</span>
+            </div>
+            <div class="legal_row">
+                <span>ИНН:</span>
+                <span>402573939444</span>
+            </div>
+            <div class="legal_row">
+                <span>ОГРН:</span>
+                <span>317402700004683</span>
+            </div>
+            <div class="legal_row">
+                <span>Фактический адрес:</span>
+                <span>Москва, ул. Доватора, дом 7/8 с1</span>
+            </div>
+            <div class="legal_row">
+                <span>Юридический адрес:</span>
+                <span>Москва, ул. Доватора, дом 7/8 с1</span>
+            </div>
+            <div class="legal_row">
+                <span>Расчетный счет:</span>
+                <span>408028108000005888</span>
+            </div>
+            <div class="legal_row">
+                <span>Банк:</span>
+                <span>АО «ТИНЬКОФФ БАНК»</span>
+            </div>
+            <div class="legal_row">
+                <span>Корр. счет:</span>
+                <span>30101810145250000974</span>
+            </div>
+            <div class="legal_row">
+                <span>БИК:</span>
+                <span>044525974</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="contact_form_section">
+    <div class="container contact_form_wrapper">
+
+        <div class="contact_form_block">
+            <h2 class="contact_form_title">СВЯЖИТЕСЬ С НАМИ<br>ПО ЛЮБЫМ ВОПРОСАМ</h2>
+
+            <form class="contact_form" method="post">
+                {% csrf_token %}
+                <div class="form_row">
+                    <input type="text" name="name" placeholder="Имя">
+                    <input type="email" name="email" placeholder="E-mail">
+                </div>
+                <div class="form_row">
+                    <input type="tel" name="phone" placeholder="Телефон">
+                    <input type="text" name="company" placeholder="Компания">
+                </div>
+                <textarea name="message" placeholder="Сообщение"></textarea>
+                <button type="submit" class="form_btn">Задать вопрос</button>
+            </form>
+        </div>
+
+        <div class="contact_form_image">
+            <img src="{% static 'images/img/image 86.png' %}" alt="Велосипедист">
+        </div>
+
+    </div>
+</section>
+
+<section class="faq_section">
+    <div class="container">
+        <h2 class="faq_title">ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</h2>
+
+        <div class="faq_item faq_open">
+            <div class="faq_question">Получу ли я тот же товар, что и на картинке? <span class="faq_arrow">^</span></div>
+            <div class="faq_answer">
+                <p>Consectetur cras scelerisque dis nec mi vestibulum ullamcorper turpis enim natoque tempus a malesuada suspendisse iaculis adipiscing himenaeos tincidunt. Tellus pharetra dis nostra urna a scelerisque id parturient ullamcorper ullamcorper class ad consectetur tristique et.</p>
+                <p>Hendrerit mollis facilisi odio a montes scelerisque a scelerisque justo a praesent conubia aenean mi tempor.</p>
+            </div>
+        </div>
+
+        <div class="faq_item">
+            <div class="faq_question">Где я могу посмотреть чек о продаже? <span class="faq_arrow">v</span></div>
+        </div>
+
+        <div class="faq_item">
+            <div class="faq_question">Как я могу вернуть товар? <span class="faq_arrow">v</span></div>
+        </div>
+
+        <div class="faq_item">
+            <div class="faq_question">Будете ли вы пополнять запасы товаров, помеченных как «нет в наличии»? <span class="faq_arrow">v</span></div>
+        </div>
+
+        <div class="faq_item">
+            <div class="faq_question">С какими видами доставки вы работаете? <span class="faq_arrow">v</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="brands_section">
+    <div class="brands">
+    <img src="{% static 'images/svg/1 (1).svg' %}" alt="brand 1">
+    <img src="{% static 'images/svg/2.svg' %}" alt="brand 2">
+    <img src="{% static 'images/svg/3.svg' %}" alt="brand 3">
+    <img src="{% static 'images/svg/4.svg' %}" alt="brand 4">
+    <img src="{% static 'images/svg/5.svg' %}" alt="brand 5">
+    <img src="{% static 'images/svg/6.svg' %}" alt="brand 6">
+    <img src="{% static 'images/svg/7 1.svg' %}" alt="brand 7">
+  </div>
+</section>
+
+{% endblock %}

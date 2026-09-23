@@ -72,5 +72,17 @@ class Review(models.Model):
     def __str__(self):
         return self.title
     
+
+class Question(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Имя")
+    email = models.EmailField(verbose_name="E-mail")
+    phone = models.CharField(max_length=30, blank=True, default="", verbose_name="Телефон")
+    company = models.CharField(max_length=200, blank=True, default="", verbose_name="Компания")
+    message = models.TextField(verbose_name="Сообщение")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата")
+
+    def __str__(self):
+        return self.name
+    
     
 # Create your models here.

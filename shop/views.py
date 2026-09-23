@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product, WinterBike, Equipment, Review
+from .models import Product, WinterBike, Equipment, Review, Question
 import random
 
 
@@ -234,6 +234,18 @@ def product_detail(request, pk):
         'colors': colors,
         'characteristics': characteristics,
     })
+
+
+def contacts(request):
+    if request.method == 'POST':
+        Question.objects.create(
+            name=request.POST.get('name', ''),
+            email=request.POST.get('email', ''),
+            phone=request.POST.get('phone', ''),
+            company=request.POST.get('company', ''),
+            message=request.POST.get('message', ''),
+        )
+    return render(request, 'contacts.html')
 
 
 # Create your views here.

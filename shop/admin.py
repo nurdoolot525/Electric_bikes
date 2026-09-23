@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Equipment, Product, Review, WinterBike
+from .models import Equipment, Product, Question, Review, WinterBike
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -23,4 +23,10 @@ class EquipmentAdmin(admin.ModelAdmin):
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('title', 'date', 'tag')
+
+
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'phone', 'created_at')
+    search_fields = ('name', 'email')
 # Register your models here.
