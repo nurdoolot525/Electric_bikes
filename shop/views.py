@@ -248,4 +248,8 @@ def contacts(request):
     return render(request, 'contacts.html')
 
 
+def workshop(request):
+    return render(request, 'workshop.html')
+
+
 # Create your views here.

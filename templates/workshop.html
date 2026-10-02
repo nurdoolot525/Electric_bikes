@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Веломастерская{% endblock %}
+
+{% block content %}
+
+<section class="workshop_hero">
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="{% url 'home' %}">Главная</a> /
+            <span class="breadcrumbs_current">Веломастерская</span>
+        </div>
+        <h1 class="workshop_hero_title">ВЕЛОМАСТЕРСКАЯ</h1>
+    </div>
+</section>
+
+<section class="workshop_about">
+    <div class="container workshop_about_columns">
+
+        <div class="workshop_about_col">
+            <p>Если вы купили велосипед в нашем магазине, то можете не волноваться о настройке и проверке, так как мы это выполняем в рамках предпродажной подготовки. Но если вы откатались уже сезон и ваш железный конь уже выглядит и ведёт себя потрёпанно, мы с удовольствием приведём его в порядок. Наша веломастерская работает ежедневно и выполняет не только периодическое обслуживание, но и ремонт велосипеда любой сложности</p>
+        </div>
+
+        <div class="workshop_about_col">
+            <p>Отличное оснащение и опытные специалисты обеспечат максимально короткий срок ремонта. Какой бы ни была поломка, наличие большого количества узлов и деталей на складе позволит быстро вернуть технике работоспособность. Мы берём в работу горные модели, шоссейные и городские велосипеды</p>
+            <p>Являясь профессиональными велосипедистами, мастера нашей компании быстро и чётко выявят неисправность и предложат максимально эффективный способ ремонта. Очень скоро ваш байк будет вновь на ходу</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="main_services">
+    <div class="container">
+        <h2 class="workshop_subtitle">СТОИМОСТЬ ОСНОВНЫХ УСЛУГ</h2>
+
+        <div class="services_columns">
+
+            <div class="services_col">
+                <div class="service_row">
+                    <span>Диагностика</span>
+                    <span class="service_price">Бесплатно</span>
+                </div>
+                <div class="service_row">
+                    <span>Тех обслуживание</span>
+                    <span class="service_price">2 500 ₽</span>
+                </div>
+                <div class="service_row">
+                    <span>Мойка</span>
+                    <span class="service_price">1500 ₽</span>
+                </div>
+            </div>
+
+            <div class="services_col">
+                <div class="service_row">
+                    <span>Комплексное тех. обслуживание</span>
+                    <span class="service_price">5 000 ₽</span>
+                </div>
+                <div class="service_row">
+                    <span>Сборка велосипеда индивидуальная</span>
+                    <span class="service_price">5 000 - 12 000 ₽</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="extra_services">
+    <div class="container">
+        <h2 class="workshop_subtitle">ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ</h2>
+
+        <details class="service_details">
+            <summary>Ремонт привода <span class="details_arrow">v</span></summary>
+        </details>
+
+        <details class="service_details">
+            <summary>Рулевое управление <span class="details_arrow">v</span></summary>
+        </details>
+
+        <details class="service_details">
+            <summary>Колеса <span class="details_arrow">v</span></summary>
+        </details>
+
+        <details class="service_details">
+            <summary>Рама <span class="details_arrow">v</span></summary>
+        </details>
+
+        <details class="service_details" open>
+            <summary>Вилка <span class="details_arrow">v</span></summary>
+            <div class="details_list">
+                <div class="details_row"><span>Укорачивание штока вилки</span><span class="details_price">600 ₽</span></div>
+                <div class="details_row"><span>Якорь одноразовый установить</span><span class="details_price">300 ₽</span></div>
+                <div class="details_row"><span>Якорь демонтаж</span><span class="details_price">300 ₽</span></div>
+                <div class="details_row"><span>Подкачка воздушной вилки</span><span class="details_price">100 ₽</span></div>
+                <div class="details_row"><span>Вилка однокоронная снять / установить</span><span class="details_price">800 ₽</span></div>
+                <div class="details_row"><span>Подкачка заднего амортизатора</span><span class="details_price">100 ₽</span></div>
+            </div>
+        </details>
+
+        <details class="service_details">
+            <summary>Дополнительное оборудование (аксессуары) <span class="details_arrow">v</span></summary>
+        </details>
+    </div>
+</section>
+
+<section class="brands_section">
+    <div class="brands">
+        <img src="{% static 'images/svg/1 (1).svg' %}" alt="brand 1">
+        <img src="{% static 'images/svg/2.svg' %}" alt="brand 2">
+        <img src="{% static 'images/svg/3.svg' %}" alt="brand 3">
+        <img src="{% static 'images/svg/4.svg' %}" alt="brand 4">
+        <img src="{% static 'images/svg/5.svg' %}" alt="brand 5">
+        <img src="{% static 'images/svg/6.svg' %}" alt="brand 6">
+        <img src="{% static 'images/svg/7 1.svg' %}" alt="brand 7">
+    </div>
+</section>
+
+<a href="#" class="up_button">&#8593;</a>
+
+{% endblock %}

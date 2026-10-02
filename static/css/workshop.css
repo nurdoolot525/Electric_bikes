@@ -1,0 +1,218 @@
+.workshop_hero {
+    background: #0b0b0b url("../images/img/Rectangle\ 166\ \(2\).png") no-repeat center;
+    background-size: cover;
+    color: #ffffff;
+    padding: 40px 0 80px 0;
+}
+
+.workshop_hero_title {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+.workshop_about {
+    background: #2b2b2b;
+    color: #ffffff;
+    padding: 60px 0;
+}
+
+.workshop_about_columns {
+    display: flex;
+    gap: 60px;
+}
+
+.workshop_about_col {
+    flex: 1;
+}
+
+.workshop_about_col p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 0 20px 0;
+}
+
+
+.workshop_subtitle {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 40px 0;
+}
+
+.main_services {
+    padding: 80px 0 40px 0;
+}
+
+.services_columns {
+    display: flex;
+    gap: 30px;
+}
+
+.services_col {
+    flex: 1;
+}
+
+.service_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 22px 25px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.service_price {
+    color: #888888;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+
+.extra_services {
+    padding: 40px 0 80px 0;
+}
+
+.service_details {
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.service_details[open] {
+    background: #ffffff;
+}
+
+.service_details summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.service_details summary::-webkit-details-marker {
+    display: none;
+}
+
+.details_arrow {
+    color: #111111;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.service_details[open] summary {
+    background: #f26522;
+    color: #ffffff;
+}
+
+.service_details[open] .details_arrow {
+    color: #ffffff;
+    transform: rotate(180deg);
+}
+
+.details_list {
+    padding: 10px 25px 20px 25px;
+}
+
+.details_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+}
+
+.details_price {
+    color: #888888;
+    white-space: nowrap;
+}
+
+
+.up_button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    background: #111111;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    text-decoration: none;
+    z-index: 20;
+}
+
+.up_button:hover {
+    background: #f26522;
+}
+
+
+@media (max-width: 992px) {
+    .workshop_about_columns {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .services_columns {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .workshop_hero {
+        padding: 25px 0 40px 0;
+    }
+
+    .workshop_hero_title {
+        font-size: 32px;
+    }
+
+    .workshop_about {
+        padding: 40px 0;
+    }
+
+    .workshop_about_col p {
+        margin-bottom: 15px;
+    }
+
+    .workshop_subtitle {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    .main_services {
+        padding: 50px 0 20px 0;
+    }
+
+    .extra_services {
+        padding: 20px 0 60px 0;
+    }
+
+    .service_price {
+        white-space: normal;
+        text-align: right;
+    }
+
+    .up_button {
+        right: 15px;
+        bottom: 15px;
+        width: 48px;
+        height: 48px;
+    }
+}
